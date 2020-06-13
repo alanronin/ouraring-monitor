@@ -1,0 +1,27 @@
+<h2>Search</h2>
+<form>
+  <input type="search" name="query" [(ngModel)]="query" (keyup.enter)="search()">
+  <button type="button" (click)="search()">Search</button>
+</form>
+<table *ngIf="searchResults">
+  <thead>
+  <tr>
+    <th>Email</th>
+    <th>Gender</th>
+    <th>Age</th>
+    <th>Weight</th>
+    <th>Height</th>
+    <th>User ID</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let person of searchResults; let i=index">
+    <td>{{person.email}}</td>
+    <td>{{person.gender}}</td>
+    <td>{{person.age}}</td>
+    <td>{{person.weight}}</td>
+    <td>{{person.height}}</td>
+    <td>{{person.user_id}}</td>
+  </tr>
+  </tbody>
+</table>

@@ -1,27 +1,72 @@
-<h2>Search</h2>
-<form>
-  <input type="search" name="query" [(ngModel)]="query" (keyup.enter)="search()">
-  <button type="button" (click)="search()">Search</button>
-</form>
-<table *ngIf="searchResults">
-  <thead>
-  <tr>
-    <th>Email</th>
-    <th>Gender</th>
-    <th>Age</th>
-    <th>Weight</th>
-    <th>Height</th>
-    <th>User ID</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let person of searchResults; let i=index">
-    <td>{{person.email}}</td>
-    <td>{{person.gender}}</td>
-    <td>{{person.age}}</td>
-    <td>{{person.weight}}</td>
-    <td>{{person.height}}</td>
-    <td>{{person.user_id}}</td>
-  </tr>
-  </tbody>
-</table>
+<h1>Summary of {{user.email}}</h1>
+<mat-list>
+<div class="divider"></div>
+<mat-divider></mat-divider>
+<div *ngIf="sleepResults">
+    <h2>Sleep Summary</h2>
+    <table>
+        <thead>
+        <tr>
+          <th>Summary Date</th>
+          <th>Sleep Duration (seconds)</th>
+          <th>Efficiency</th>
+          <th>Temperature Delta</th>
+          <th>Score</th>          
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of sleepResults">
+          <td class="item">{{item.summary_date}}</td>
+          <td class="item">{{item.duration}}</td>
+          <td class="item">{{item.efficiency}}</td>
+          <td class="item">{{item.temperature_delta}}</td>
+          <td class="item">{{item.score}}</td>          
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="divider"></div>
+<mat-divider></mat-divider>
+<div *ngIf="activityResults">
+    <h2>Activity Summary</h2>
+    <table>
+        <thead>
+        <tr>
+          <th>Summary Date</th>
+          <th>Day Start</th>
+          <th>Day End</th>
+          <th>Score</th>          
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of activityResults">
+          <td class="item">{{item.summary_date}}</td>
+          <td class="item">{{item.day_start}}</td>
+          <td class="item">{{item.day_end}}</td>
+          <td class="item">{{item.score}}</td>          
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="divider"></div>
+<mat-divider></mat-divider>
+<div *ngIf="readinessResults">
+    <h2>Readiness Summary</h2>
+    <table>
+        <thead>
+        <tr>
+          <th>Summary Date</th>
+          <th>Score</th>
+          <th>Score Temperature</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of readinessResults">
+          <td class="item">{{item.summary_date}}</td>
+          <td class="item">{{item.score}}</td>
+          <td class="item">{{item.score_temperature}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</mat-list>

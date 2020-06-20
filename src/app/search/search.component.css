@@ -13,3 +13,11 @@ td {
     border-top: 1px solid #ddd;
     padding: 8px;
 }
+
+.item {
+    text-align: center;
+}
+
+.divider {
+    margin-top: 5%;
+}

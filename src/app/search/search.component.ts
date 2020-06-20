@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Person, SearchService } from '../services';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { SleepService } from '../services/sleep.service';
+import { ActivityService } from '../services/activity.service';
+import { ReadinessService } from '../services/readiness.service';
 
 @Component({
   selector: 'app-search',
@@ -9,31 +11,63 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  query: string;
-  searchResults: Array<Person>;
-  sub: Subscription;
+  sleepSub: Subscription;
+  activitySub: Subscription;
+  readinessSub: Subscription;
+  sleepResults = [];
+  activityResults = [];
+  readinessResults = [];
+  user;
 
-  constructor(private searchService: SearchService, private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private sleepService: SleepService,
+    private activityService: ActivityService,
+    private readinessService: ReadinessService
+  ) { }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      if (params.term) {
-        this.query = decodeURIComponent(params.term);
-        this.search();
-      }
+    this.user = JSON.parse(localStorage.getItem('userInfo'));
+    this.sleepSub = this.route.paramMap.subscribe(params => {
+      this.sleepService
+        .getSleepSummary()
+        .subscribe(data => {
+          localStorage.setItem('sleepSummary', JSON.stringify(data));
+          console.log(data);
+          for(let item of data["sleep"]) {
+            this.sleepResults.push(item);
+          }
+        });
+    });
+
+    this.activitySub = this.route.paramMap.subscribe(params => {
+      this.activityService
+        .getActivitySummary()
+        .subscribe(data => {
+          localStorage.setItem('activitySummary', JSON.stringify(data));
+          console.log(data);
+          for(let item of data["activity"]) {
+            this.activityResults.push(item);
+          }
+        });
+    });
+
+    this.readinessSub = this.route.paramMap.subscribe(params => {
+      this.readinessService
+        .getReadinessSummary()
+        .subscribe(data => {
+          localStorage.setItem('readinessSummary', JSON.stringify(data));
+          console.log(data);
+          for(let item of data["readiness"]) {
+            this.readinessResults.push(item);
+          }
+        });
     });
   }
 
-  search(): void {
-    this.searchService.search(this.query).subscribe(
-      (data: any) => { this.searchResults = data; },
-      error => console.log(error)
-    );
-  }
-
-  ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
+  ngOnDestroy():void {
+    if (this.sleepSub) {
+      this.sleepSub.unsubscribe();
     }
   }
 

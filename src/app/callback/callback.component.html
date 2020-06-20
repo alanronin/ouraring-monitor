@@ -1,0 +1,33 @@
+<mat-list>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Search</mat-label>
+      <input matInput placeholder="email" type="search" name="searchText" [(ngModel)]="searchText">
+    </mat-form-field>    
+  </form>  
+  <mat-divider></mat-divider>
+  <div *ngIf="searchResults">
+    <table>
+      <thead>
+      <tr>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Weight</th>
+        <th>Height</th>
+        <th>User ID</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let person of searchResults | filter: searchText">
+        <td class="item"><a [routerLink]="['/search']">{{person.email}}</a></td>
+        <td class="item">{{person.gender}}</td>
+        <td class="item">{{person.age}}</td>
+        <td class="item">{{person.weight}}</td>
+        <td class="item">{{person.height}}</td>
+        <td class="item">{{person.user_id}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>  
+</mat-list>

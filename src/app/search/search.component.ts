@@ -69,6 +69,12 @@ export class SearchComponent implements OnInit {
     if (this.sleepSub) {
       this.sleepSub.unsubscribe();
     }
+    if (this.activitySub) {
+      this.activitySub.unsubscribe();
+    }
+    if (this.readinessSub) {
+      this.readinessSub.unsubscribe();
+    }
   }
 
 }

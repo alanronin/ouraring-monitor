@@ -10,6 +10,7 @@
     <table>
       <thead>
       <tr>
+        <th>Date: Temp Delta</th>
         <th>Email</th>
         <th>Gender</th>
         <th>Age</th>
@@ -19,7 +20,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let person of searchResults | filter: searchText">
+      <tr class="row-item" *ngFor="let person of searchResults | filter: searchText">
+        <td *ngIf="sleepResults">
+          <div *ngFor="let item of sleepResults">
+            {{item.summary_date}}: <span class="temp-delta">{{item.temperature_delta}}</span>
+          </div>          
+        </td>
         <td class="item"><a [routerLink]="['/search']">{{person.email}}</a></td>
         <td class="item">{{person.gender}}</td>
         <td class="item">{{person.age}}</td>

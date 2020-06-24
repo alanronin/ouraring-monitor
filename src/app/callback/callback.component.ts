@@ -48,11 +48,12 @@ export class CallbackComponent implements OnInit {
         .getSleepSummary()
         .subscribe(data => {
           localStorage.setItem('sleepSummary', JSON.stringify(data));
-          console.log(data);
           for(let item of data["sleep"]) {
             this.sleepResults.push(item);
-            this.sleepResults.reverse();
           }
+          this.sleepResults.sort((a, b) => {
+            return <any>new Date(b.summary_date) - <any>new Date(a.summary_date);
+          });
         });
     });
   }

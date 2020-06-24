@@ -33,10 +33,12 @@ export class SearchComponent implements OnInit {
         .getSleepSummary()
         .subscribe(data => {
           localStorage.setItem('sleepSummary', JSON.stringify(data));
-          console.log(data);
           for(let item of data["sleep"]) {
             this.sleepResults.push(item);
           }
+          this.sleepResults.sort((a, b) => {
+            return <any>new Date(b.summary_date) - <any>new Date(a.summary_date);
+          });
         });
     });
 
@@ -45,10 +47,12 @@ export class SearchComponent implements OnInit {
         .getActivitySummary()
         .subscribe(data => {
           localStorage.setItem('activitySummary', JSON.stringify(data));
-          console.log(data);
           for(let item of data["activity"]) {
             this.activityResults.push(item);
           }
+          this.activityResults.sort((a, b) => {
+            return <any>new Date(b.summary_date) - <any>new Date(a.summary_date);
+          });
         });
     });
 
@@ -57,10 +61,12 @@ export class SearchComponent implements OnInit {
         .getReadinessSummary()
         .subscribe(data => {
           localStorage.setItem('readinessSummary', JSON.stringify(data));
-          console.log(data);
           for(let item of data["readiness"]) {
             this.readinessResults.push(item);
           }
+          this.readinessResults.sort((a, b) => {
+            return <any>new Date(b.summary_date) - <any>new Date(a.summary_date);
+          });
         });
     });
   }

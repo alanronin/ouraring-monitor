@@ -18,6 +18,7 @@ export class CallbackComponent implements OnInit {
   private token;
   searchText: string;
   value = 'Clear me';
+  avgDelta = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -54,6 +55,21 @@ export class CallbackComponent implements OnInit {
           this.sleepResults.sort((a, b) => {
             return <any>new Date(b.summary_date) - <any>new Date(a.summary_date);
           });
+
+          let avgDaysCalculation = 5;
+          let addScore = 0;
+          
+          if(this.sleepResults.length >= 4) {
+            for(let i=0; i<= avgDaysCalculation-1; i++) {
+              addScore += this.sleepResults[i].temperature_delta;
+            }
+            this.avgDelta = addScore / avgDaysCalculation;
+          } else {
+            for(let i=0; i<= this.sleepResults.length; i++) {
+              addScore += this.sleepResults[i].temperature_delta;
+            }
+            this.avgDelta = addScore / this.sleepResults.length;
+          }
         });
     });
   }

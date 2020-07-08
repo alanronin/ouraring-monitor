@@ -4,7 +4,23 @@
       <mat-label>Search</mat-label>
       <input matInput placeholder="email" type="search" name="searchText" [(ngModel)]="searchText">
     </mat-form-field>    
-  </form>  
+  </form>
+
+  <div *ngIf="!avgDelta">
+    <mat-spinner></mat-spinner>
+  </div>
+  
+  <div class="healthy-delta-status" *ngIf="avgDelta">
+    <div *ngIf="avgDelta < 0.5">
+      <span class="material-icons">sentiment_very_satisfied</span>
+      <span> Healthy</span>
+    </div>
+    <div class="unhealthy-delta-status" *ngIf="avgDelta >= 0.5">
+      <span class="material-icons">sentiment_very_dissatisfied</span>
+      <span> High Delta Temperature</span>
+    </div>
+  </div>
+
   <mat-divider></mat-divider>
   <div *ngIf="searchResults">
     <table>
@@ -22,7 +38,7 @@
       <tbody>
       <tr class="row-item" *ngFor="let person of searchResults | filter: searchText">
         <td *ngIf="sleepResults">
-          <div *ngFor="let item of sleepResults">
+          <div class="temp-row" *ngFor="let item of sleepResults">
             {{item.summary_date}}: <span class="temp-delta">{{item.temperature_delta}}</span>
           </div>          
         </td>
@@ -31,7 +47,7 @@
         <td class="item">{{person.age}}</td>
         <td class="item">{{person.weight}}</td>
         <td class="item">{{person.height}}</td>
-        <td class="item">{{person.user_id}}</td>
+        <td class="item">...{{person.user_id | slice:-6}}</td>
       </tr>
       </tbody>
     </table>

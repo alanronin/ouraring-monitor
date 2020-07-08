@@ -1,3 +1,24 @@
+h1 {
+    margin-top: 2%;
+    margin-left: 2.5%;
+}
+
+.healthy-score-status {
+    font-size: 1.5rem;
+    margin-left: 2.5%;
+    color: green;
+}
+
+.unhealthy-score-status {
+    font-size: 1.5rem;
+    margin-left: 2.5%;
+    color: red;
+}
+
+.material-icons {
+    font-size: xxx-large;
+}
+
 table {
     margin-top: 10px;
     border-collapse: collapse;
@@ -20,4 +41,8 @@ td {
 
 .divider {
     margin-top: 5%;
+}
+
+.mat-list-base {
+    padding: 0 5%;
 }

@@ -1,4 +1,20 @@
 <h1>Summary of {{user.email}}</h1>
+
+<div *ngIf="!avgScore">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="healthy-score-status" *ngIf="avgScore">
+  <div *ngIf="avgScore >= 60">
+    <span class="material-icons">sentiment_very_satisfied</span>
+    <span> Healthy</span>
+  </div>
+  <div class="unhealthy-score-status" *ngIf="avgScore < 60">
+    <span class="material-icons">sentiment_very_dissatisfied</span>
+    <span> High Temperature</span>
+  </div>
+</div>
+
 <mat-list>
 <div class="divider"></div>
 <mat-divider></mat-divider>

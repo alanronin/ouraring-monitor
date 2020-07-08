@@ -18,6 +18,7 @@ export class SearchComponent implements OnInit {
   activityResults = [];
   readinessResults = [];
   user;
+  avgScore = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -67,6 +68,22 @@ export class SearchComponent implements OnInit {
           this.readinessResults.sort((a, b) => {
             return <any>new Date(b.summary_date) - <any>new Date(a.summary_date);
           });
+
+          let avgDaysCalculation = 5;
+          let addScore = 0;
+          
+          if(this.readinessResults.length >= 4) {
+            for(let i=0; i<= avgDaysCalculation-1; i++) {
+              addScore += this.readinessResults[i].score;
+            }
+            this.avgScore = addScore / avgDaysCalculation;
+          } else {
+            for(let i=0; i<= this.readinessResults.length; i++) {
+              addScore += this.readinessResults[i].score;
+            }
+            this.avgScore = addScore / this.readinessResults.length;
+          }
+            
         });
     });
   }

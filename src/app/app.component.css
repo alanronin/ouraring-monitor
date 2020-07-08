@@ -1,0 +1,16 @@
+.toolbar {
+    background-color: #ffffff;
+    padding-left: unset;
+    border-radius: 5px;
+}
+
+.logo {
+    height: -webkit-fill-available;
+    width: 2.5em;
+    border-radius: 5px;
+}
+
+.title {
+    margin-left: 1em;
+    color: #1e90ff;
+}

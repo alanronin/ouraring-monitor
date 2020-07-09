@@ -6,11 +6,11 @@
     </mat-form-field>    
   </form>
 
-  <div *ngIf="!avgDelta">
+  <!--div *ngIf="!avgDelta">
     <mat-spinner></mat-spinner>
-  </div>
+  </div-->
   
-  <div class="healthy-delta-status" *ngIf="avgDelta">
+  <!--div class="healthy-delta-status" *ngIf="avgDelta">
     <div *ngIf="avgDelta < 0.5">
       <span class="material-icons">sentiment_very_satisfied</span>
       <span> Healthy</span>
@@ -19,7 +19,7 @@
       <span class="material-icons">sentiment_very_dissatisfied</span>
       <span> High Delta Temperature</span>
     </div>
-  </div>
+  </div-->
 
   <mat-divider></mat-divider>
   <div *ngIf="searchResults">
@@ -33,6 +33,8 @@
         <th>Weight</th>
         <th>Height</th>
         <th>User ID</th>
+        <th>Delta Temp Status</th>
+        <th>Score Status</th>
       </tr>
       </thead>
       <tbody>
@@ -48,6 +50,30 @@
         <td class="item">{{person.weight}}</td>
         <td class="item">{{person.height}}</td>
         <td class="item">...{{person.user_id | slice:-6}}</td>
+        <td>
+          <div class="healthy-delta-status" *ngIf="avgDelta">
+            <div *ngIf="avgDelta < 0.5">
+              <span class="material-icons">sentiment_very_satisfied</span>
+              <span> Healthy</span>
+            </div>
+            <div class="unhealthy-delta-status" *ngIf="avgDelta >= 0.5">
+              <span class="material-icons">sentiment_very_dissatisfied</span>
+              <span> High Delta Temperature</span>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="healthy-score-status" *ngIf="avgScore2">
+            <div *ngIf="avgScore2 >= 60">
+              <span class="material-icons">sentiment_very_satisfied</span>
+              <span> Healthy</span>
+            </div>
+            <div class="unhealthy-score-status" *ngIf="avgScore2 < 60">
+              <span class="material-icons">sentiment_very_dissatisfied</span>
+              <span> High Temperature</span>
+            </div>
+          </div>
+        </td>
       </tr>
       </tbody>
     </table>

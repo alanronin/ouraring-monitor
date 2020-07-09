@@ -15,6 +15,18 @@ h1 {
     color: red;
 }
 
+.healthy-delta-status {
+    font-size: 1.5rem;
+    margin-left: 2.5%;
+    color: green;
+}
+
+.unhealthy-delta-status {
+    font-size: 1.5rem;
+    margin-left: 2.5%;
+    color: red;
+}
+
 .material-icons {
     font-size: xxx-large;
 }

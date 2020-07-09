@@ -7,11 +7,22 @@
 <div class="healthy-score-status" *ngIf="avgScore">
   <div *ngIf="avgScore >= 60">
     <span class="material-icons">sentiment_very_satisfied</span>
-    <span> Healthy</span>
+    <span> Healthy Score</span>
   </div>
   <div class="unhealthy-score-status" *ngIf="avgScore < 60">
     <span class="material-icons">sentiment_very_dissatisfied</span>
     <span> High Temperature</span>
+  </div>
+</div>
+
+<div class="healthy-delta-status">
+  <div *ngIf="avgDelta < 0.5">
+    <span class="material-icons">sentiment_very_satisfied</span>
+    <span> Healthy Delta Temp</span>
+  </div>
+  <div class="unhealthy-delta-status" *ngIf="avgDelta >= 0.5">
+    <span class="material-icons">sentiment_very_dissatisfied</span>
+    <span> High Delta Temperature</span>
   </div>
 </div>
 

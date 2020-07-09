@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit {
   readinessResults = [];
   user;
   avgScore = null;
+  avgDelta;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('userInfo'));
+
     this.sleepSub = this.route.paramMap.subscribe(params => {
       this.sleepService
         .getSleepSummary()
@@ -83,7 +85,7 @@ export class SearchComponent implements OnInit {
             }
             this.avgScore = addScore / this.readinessResults.length;
           }
-            
+          this.avgDelta = localStorage.getItem('avgDelta');            
         });
     });
   }

@@ -83,7 +83,6 @@ export class CallbackComponent implements OnInit {
       this.readinessService
         .getReadinessSummary()
         .subscribe(data => {
-          //localStorage.setItem('readinessSummary', JSON.stringify(data));
           for(let item of data["readiness"]) {
             this.readinessResults2.push(item);
           }

@@ -6,21 +6,6 @@
     </mat-form-field>    
   </form>
 
-  <!--div *ngIf="!avgDelta">
-    <mat-spinner></mat-spinner>
-  </div-->
-  
-  <!--div class="healthy-delta-status" *ngIf="avgDelta">
-    <div *ngIf="avgDelta < 0.5">
-      <span class="material-icons">sentiment_very_satisfied</span>
-      <span> Healthy</span>
-    </div>
-    <div class="unhealthy-delta-status" *ngIf="avgDelta >= 0.5">
-      <span class="material-icons">sentiment_very_dissatisfied</span>
-      <span> High Delta Temperature</span>
-    </div>
-  </div-->
-
   <mat-divider></mat-divider>
   <div *ngIf="searchResults">
     <table>
